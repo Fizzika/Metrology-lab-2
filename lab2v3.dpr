@@ -229,7 +229,7 @@ var
     //Text: TText;
 begin
 	Init;
-	Assign(InF, 'Input.txt');
+	Assign(InF, 'trach/easy.txt');
 	Reset(InF);
 	Depth := -1;
 	IfCount := 0;
