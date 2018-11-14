@@ -144,6 +144,8 @@ begin
         if aTokenList.IndexOf('=') = -1 then //decl without assign
         	Dec(aOpCount);
     end;
+    if (aTokenList.IndexOf('else') <> -1) then
+    	Dec(aOpCount); // else is no OPERATOR
     if ((aTokenList.IndexOf('if') <> -1) and
        ((aTokenList.IndexOf('else') <> -1))) then   // oneline if else
     begin
@@ -154,6 +156,7 @@ begin
     begin
         Dec(aOpCount);
     end;
+
     {If calculate}
 	for i := 0 to aTokenList.Count - 1 do
 	begin
@@ -235,7 +238,7 @@ var
     //Text: TText;
 begin
 	Init;
-	Assign(InF, 'tests/Input.txt');
+	Assign(InF, 'tests/in.java');
 	Reset(InF);
 	Depth := -1;
 	IfCount := 0;
