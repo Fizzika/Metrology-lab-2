@@ -137,6 +137,8 @@ begin
     Inc(aOpCount);
     if (aTokenList[0] = 'fun') then // fun declaration - no op
     	Dec(aOpCount);
+    if (aTokenList[0] = 'when') then
+    	Dec(aOpCount); // when decl
     if ((aTokenList[0] = 'var') or (aTokenList[0] = 'val')) then
     begin
         if aTokenList.IndexOf('=') = -1 then //decl without assign
@@ -175,7 +177,11 @@ begin
             begin
                 Inc(aDepth);
                 Inc(aIfCount);
-            end;
+            end
+            else
+            	Dec(aOpCount);
+            if (i <> aTokenList.Count - 1) then
+            	Inc(aOpCount); // For one-line case, such as EXPR -> OPERATOR
         end;
         if aTokenList[i] = '{' then
         begin
@@ -229,7 +235,7 @@ var
     //Text: TText;
 begin
 	Init;
-	Assign(InF, 'trach/easy.txt');
+	Assign(InF, 'tests/Input.txt');
 	Reset(InF);
 	Depth := -1;
 	IfCount := 0;
@@ -247,7 +253,7 @@ begin
     begin
         TokenList := Text[CurrPosInText];
         Change(TokenList, OpCount, Depth, IfCount);
-        Write(CurrPosInText, ':', Depth, ' ');
+        Write(CurrPosInText + 1, ':', Depth, ' ');
         if Depth > MaxDepth then
         	MaxDepth := Depth;
     	Inc(CurrPosInText);
