@@ -1,0 +1,212 @@
+fun main(args: Array<String>) {
+    var low = 20
+    val high = 50
+
+    for (number in low + 1..high - 1) {
+        if (checkArmstrong(number)) {
+            print("$number ")
+	}
+    }
+
+    while (low < high) {
+        if (checkPrimeNumber(low)) {
+            print(low.toString() + " ")
+	}
+        ++low
+    }
+
+    val num: Long = 110110111
+    val decimal = convertBinaryToDecimal(num)
+    println("$num in binary = $decimal in decimal")
+
+    //val num = 19
+    val binary = convertDecimalToBinary(num)
+    println("$num in decimal = $binary in binary")
+
+    val octal = convertBinarytoOctal(binary)
+    println("$binary in binary = $octal in octal")
+
+    //octal = 67
+    binary = convertOctalToBinary(octal)
+    println("$octal in octal = $binary in binary")
+
+}
+
+fun checkArmstrong(num: Int): Boolean {
+    var digits = 0
+    var result = 0
+    var originalNumber = num
+
+    while (originalNumber != 0) {
+        originalNumber /= 10
+        ++digits
+    }
+
+    originalNumber = num
+
+    while (originalNumber != 0) {
+        val remainder = originalNumber % 10
+        result += Math.pow(remainder.toDouble(), digits.toDouble()).toInt()
+        originalNumber /= 10
+    }
+
+    if (result == num)
+        return true
+
+    return false
+}
+
+fun checkPrimeNumber(num: Int): Boolean {
+    var flag = true
+
+    for (i in 2..num / 2) {
+
+        if (num % i == 0) {
+            flag = false
+            break
+        }
+    }
+
+    return flag
+}
+
+fun convertBinaryToDecimal(num: Long): Int {
+    var num = num
+    var decimalNumber = 0
+    var i = 0
+    var remainder: Long
+
+    while (num.toInt() != 0) {
+        remainder = num % 10
+        num /= 10
+        decimalNumber += (remainder * Math.pow(2.0, i.toDouble())).toInt()
+        ++i
+    }
+    return decimalNumber
+}
+
+fun convertDecimalToBinary(n: Int): Long {
+    var n = n
+    var binaryNumber: Long = 0
+    var remainder: Int
+    var i = 1
+    var step = 1
+
+    while (n != 0) {
+        remainder = n % 2
+        System.out.printf("Step %d: %d/2, Remainder = %d, Quotient = %d\n", step++, n, remainder, n / 2)
+        n /= 2
+        binaryNumber += (remainder * i).toLong()
+        i *= 10
+    }
+    return binaryNumber
+}
+
+fun convertBinarytoOctal(binaryNumber: Long): Int {
+    var binaryNumber = binaryNumber
+    var octalNumber = 0
+    var decimalNumber = 0
+    var i = 0
+
+    while (binaryNumber.toInt() != 0) {
+        decimalNumber += (binaryNumber % 10 * Math.pow(2.0, i.toDouble())).toInt()
+        ++i
+        binaryNumber /= 10
+    }
+
+    i = 1
+
+    while (decimalNumber != 0) {
+        octalNumber += decimalNumber % 8 * i
+        decimalNumber /= 8
+        i *= 10
+    }
+
+    return octalNumber
+}
+
+fun convertOctalToBinary(octalNumber: Int): Long {
+    var octalNumber = octalNumber
+    var decimalNumber = 0
+    var i = 0
+    var binaryNumber: Long = 0
+
+    while (octalNumber != 0) {
+        decimalNumber += (octalNumber % 10 * Math.pow(8.0, i.toDouble())).toInt()
+        ++i
+        octalNumber /= 10
+    }
+
+    i = 1
+
+    while (decimalNumber != 0) {
+        binaryNumber += (decimalNumber % 2 * i).toLong()
+        decimalNumber /= 2
+        i *= 10
+    }
+
+    return binaryNumber
+}
+
+fun fun1(args: Array<String>) {
+    val n1 = Complex(2.3, 4.5)
+    val n2 = Complex(3.4, 5.0)
+    val temp: Complex
+
+    temp = add(n1, n2)
+
+    System.out.printf("Sum = %.1f + %.1fi", temp.real, temp.imag)
+}
+
+fun add(n1: Complex, n2: Complex): Complex {
+    val temp = Complex(0.0, 0.0)
+
+    temp.real = n1.real + n2.real
+    temp.imag = n1.imag + n2.imag
+
+    return temp
+}
+
+fun fun2(args: Array<String>) {
+    val start = Time(12, 34, 55)
+    val stop = Time(8, 12, 15)
+    val diff: Time
+
+    diff = difference(start, stop)
+
+    print("TIME DIFFERENCE: ${start.hours}:${start.minutes}:${start.seconds} - ")
+    print("${stop.hours}:${stop.minutes}:${stop.seconds} ")
+    print("= ${diff.hours}:${diff.minutes}:${diff.seconds}")
+}
+
+fun difference(start: Time, stop: Time): Time {
+    val diff = Time(0, 0, 0)
+
+    if (stop.seconds > start.seconds) {
+        --start.minutes
+        start.seconds += 60
+    }
+
+    diff.seconds = start.seconds - stop.seconds
+    if (stop.minutes > start.minutes) {
+        --start.hours
+        start.minutes += 60
+    }
+
+    diff.minutes = start.minutes - stop.minutes
+    diff.hours = start.hours - stop.hours
+
+    return diff
+}
+
+fun fun3(args: Array<String>) {
+    val numArray = doubleArrayOf(45.3, 67.5, -45.6, 20.34, 33.0, 45.6)
+    var sum = 0.0
+
+    for (num in numArray) {
+        sum += num
+    }
+
+    val average = sum / numArray.size
+    println("The average is: %.2f".format(average))
+}

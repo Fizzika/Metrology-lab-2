@@ -1,0 +1,22 @@
+fun main() {
+	if (x < 3)
+		if (x > 5) 
+			if (x < 8) {
+				print("Hello")
+				print("World")
+				while (x > 5)
+					x++
+				if (next) {
+					doSome();
+				} 
+				else 
+					if (wat!) {
+						doNext();
+					} 
+					else 
+						if (oh shi) 
+							if (fucking man) 
+								lol();
+			}
+	print("Hello from 1-st!);
+}

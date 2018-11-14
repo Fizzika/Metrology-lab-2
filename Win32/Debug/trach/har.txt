@@ -1,0 +1,27 @@
+fun main() {
+	for (i in i) {
+		when (x) {
+			2 -> hello
+			3 -> bye
+			4 -> djg
+			5 -> {
+				if (x) 
+					if (y) {
+						if (x)
+							fooo
+						else
+							while (x) {
+								foo
+								bar
+								neo
+								man
+								lol
+							}
+					}
+			}
+			else -> adg
+		}
+		
+	}
+	
+}

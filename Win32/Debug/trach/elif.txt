@@ -1,0 +1,21 @@
+fun main() {
+
+if (a = 4) 
+	1
+else {
+	if (a = 3) 
+		2		 
+	else {
+		if (a = 3)
+			4
+		else {
+			if (nop)
+				5
+			else
+				6
+		}
+	}
+}
+
+}
+	

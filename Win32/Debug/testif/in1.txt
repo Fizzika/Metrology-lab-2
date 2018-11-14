@@ -1,0 +1,9 @@
+fun main(args: Array<String>) {
+    var low = 20
+    val high = 50
+
+    for (number in low + 1..high - 1) {
+        if (checkArmstrong(number))
+            print("$number ")
+    }
+}
